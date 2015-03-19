@@ -1,0 +1,24 @@
+nohup: ignoring input
+In Post
+{ Name: 'Mickey', Comment: 'Hello' }
+Name: Mickey
+Comment: Hello
+Record added as 5508833a1f1901580a202cdd
+Document Array: 
+[ { Name: 'Mickey',
+    Comment: 'Hello',
+    _id: 54ff572d5b123b436109ff00 },
+  { Name: 'Kevin', Comment: 'Hi', _id: 54ff579c5b123b436109ff01 },
+  { Name: 'Jack', Comment: 'ELLO', _id: 55027909d681ee01133e9123 },
+  { Name: 'Connor',
+    Comment: 'Spicy',
+    _id: 550279ac29db272713100303 },
+  { Name: 'Kyle',
+    Comment: 'Chocolate milk',
+    _id: 550279be29db272713100304 },
+  { Name: 'Mickey',
+    Comment: 'Hello',
+    _id: 55027a6e29db272713100305 },
+  { Name: 'Mickey',
+    Comment: 'Hello',
+    _id: 5508833a1f1901580a202cdd } ]

@@ -4,8 +4,12 @@ var http = require('http');
 var fs = require('fs');
 var url = require('url');
 var bodyParser = require('body-parser');
+var basicAuth = require('basic-auth-connect');
 var app = express();
 app.use(bodyParser());
+var auth = basicAuth(function(user, pass) {
+    return((user ==='cs360')&&(pass === 'test'));
+});
 var options = {
 	host: '127.0.0.1',
 	key: fs.readFileSync('ssl/server.key'),
@@ -28,7 +32,7 @@ app.get('/comments', function(req, res) {
 	];
 	res.json(resarray);
 });
-app.post('/comments', function(req, res) {
+app.post('/comments', auth, function(req, res) {
 	console.log("In POST comment route");
 	console.log(req.body);
 	res.status(200);

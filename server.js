@@ -18,10 +18,10 @@ app.get('/getcity', function(req, res) {
 	console.log("In getcity route");
 	res.json([{city: "Price"},{city: "Provo"}]);
 });
-app.get('/comment', function(req, res) {
+app.get('/comments', function(req, res) {
 	console.log("In comment route");
 });
-app.post('/comment', function(req, res) {
+app.post('/comments', function(req, res) {
 	console.log("In POST comment route");
 	console.log(req.body);
 	res.status(200);

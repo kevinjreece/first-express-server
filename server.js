@@ -24,7 +24,7 @@ app.get('/getcity', function(req, res) {
 	var search = url_obj.query['q'];
 	if (search === "") return;
 	var found = [];
-	fs.readFile(CITIES_FILE, function(err, data) {
+	fs.readFile("UTCityList.txt", function(err, data) {
 		if (err) throw err;
 		cities = data.toString().split("\n");
 		found = [];

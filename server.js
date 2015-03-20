@@ -46,14 +46,21 @@ app.get('/getcity', function(req, res) {
 });
 // GET comments/
 app.get('/comments', function(req, res) {
-	console.log("In comment route");
-	resarray = [
-		{ Name: 'Mickey', Comment: 'Hello',
-        _id: '54f53d5ebf89e6100c2180da' },
-      { Name: 'Mark', Comment: 'This is a comment',
-        _id: '54f53e21801a52330c04be8a' }
-	];
-	res.json(resarray);
+	var MongoClient = require('mongodb').MongoClient;
+	MongoClient.connect("mongodb://localhost/weather", function(err, db) {
+		if(err) throw err;
+		db.collection("comments", function(err, comments){
+			if(err) throw err;
+			comments.find(function(err, items){
+				items.toArray(function(err, itemArr){
+					console.log("Document Array: ");
+					console.log(itemArr);
+					res.writeHead(200);
+					res.end(JSON.stringify(itemArr));
+				});
+			});
+		});
+	});
 });
 // POST comments/
 app.post('/comments', auth, function(req, res) {

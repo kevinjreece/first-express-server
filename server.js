@@ -20,6 +20,13 @@ app.get('/getcity', function(req, res) {
 });
 app.get('/comments', function(req, res) {
 	console.log("In comment route");
+	resarray = [
+		{ Name: 'Mickey', Comment: 'Hello',
+        _id: '54f53d5ebf89e6100c2180da' },
+      { Name: 'Mark', Comment: 'This is a comment',
+        _id: '54f53e21801a52330c04be8a' }
+	];
+	res.json(resarray);
 });
 app.post('/comments', function(req, res) {
 	console.log("In POST comment route");

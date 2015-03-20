@@ -18,10 +18,33 @@ var options = {
 http.createServer(app).listen(80);
 https.createServer(options, app).listen(443);
 app.use('/', express.static('./html', {maxAge: 60*60*1000}));
+// GET getcity/
 app.get('/getcity', function(req, res) {
-	console.log("In getcity route");
-	res.json([{city: "Price"},{city: "Provo"}]);
+	var url_obj = url.parse(req.url, true, false);
+	var search = url_obj.query['q'];
+	if (search === "") return;
+	var found = [];
+	fs.readFile(CITIES_FILE, function(err, data) {
+		if (err) throw err;
+		cities = data.toString().split("\n");
+		found = [];
+		cities.forEach(function (city_name, index) {
+			//console.log(city_name);
+			var search_length = search.length;
+			var city_pre = city_name.substring(0, search_length);
+			//console.log(city_pre);
+			if (city_pre == search) {
+				//console.log(city_name);
+				var city_obj = { city:city_name }
+				found.push(city_obj);
+			}
+		});
+		//console.log(found);
+		res.writeHead(200);
+		res.end(JSON.stringify(found));
+	});
 });
+// GET comments/
 app.get('/comments', function(req, res) {
 	console.log("In comment route");
 	resarray = [
@@ -32,6 +55,7 @@ app.get('/comments', function(req, res) {
 	];
 	res.json(resarray);
 });
+// POST comments/
 app.post('/comments', auth, function(req, res) {
 	console.log("In POST comment route");
 	console.log(req.body);
